@@ -22,7 +22,7 @@ jobs:
     - name: Log in to registry
       uses: docker/login-action@v2
       with:
-        registry: https://index.docker.io/v1/
+        registry: dockerpublish.azurecr.io
         username: ${{ secrets.AzureAppService_ContainerUsername_40d88516ce2e4a7d9bedcf9f5d21f201 }}
         password: ${{ secrets.AzureAppService_ContainerPassword_72738a821dbb4758add2e5c77d6f8a59 }}
 
@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_40d88516ce2e4a7d9bedcf9f5d21f201 }}/meetd/dockerpublish:${{ github.sha }}
+        tags: dockerpublish.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_40d88516ce2e4a7d9bedcf9f5d21f201 }}/meetd/dockerpublish:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -48,4 +48,4 @@ jobs:
         app-name: 'mm-cancellationtoken'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_f82646a20b9a46188468593d4104256e }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_40d88516ce2e4a7d9bedcf9f5d21f201 }}/meetd/dockerpublish:${{ github.sha }}'
+        images: 'dockerpublish.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_40d88516ce2e4a7d9bedcf9f5d21f201 }}/meetd/dockerpublish:${{ github.sha }}'
