@@ -44,29 +44,29 @@ namespace WebApplication1.Controllers
            
         }
 
-        [HttpGet]
-        [Route("GetV2")]
-        public async Task<IEnumerable<WeatherForecast>> GetWeatherForecast(CancellationToken cancellationToken)
-        {
-            try
-            {
-                _logger.LogInformation("Start Executing.");
-                var result = Enumerable.Range(1, 5).Select(index => new WeatherForecast
-                {
-                    Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    TemperatureC = Random.Shared.Next(-20, 55),
-                    Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-                })
-                .ToArray();
-                _logger.LogInformation("Executed with result count:" + result.Length);
-                return result;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex.Message);
-                throw ex;
-            }
+        // [HttpGet]
+        // [Route("GetV2")]
+        // public async Task<IEnumerable<WeatherForecast>> GetWeatherForecast(CancellationToken cancellationToken)
+        // {
+        //     try
+        //     {
+        //         _logger.LogInformation("Start Executing.");
+        //         var result = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        //         {
+        //             Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+        //             TemperatureC = Random.Shared.Next(-20, 55),
+        //             Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+        //         })
+        //         .ToArray();
+        //         _logger.LogInformation("Executed with result count:" + result.Length);
+        //         return result;
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         _logger.LogError(ex.Message);
+        //         throw ex;
+        //     }
 
-        }
+        // }
     }
 }
